@@ -1,0 +1,13 @@
+export const ININ_DATA = "ININ_DATA"  //获取初始数据
+export const SORT_ITEM = "SORT_ITEM" //排序
+export const FILTER_ITEM = "FILTER_ITEM" //筛选
+export const ADD_ITEM = "ADD_ITEM"  //将数据添加进去购物车
+export const JIA_JIAN = "JIA_JIAN"  //点击加减 
+export const DAN_CHECKED = "DAN_CHECKED" //点击单选
+export const All_CHECK = "All_CHECK"  //全选
+export const ADD_GOODS = 'ADD_GOODS'
+export const UPDATE_GOODS = 'UPDATE_GOODS'
+export const DELETE_GOODS = 'DELETE_GOODS'
+export const CHECKALLGOODS = 'CHECKALLGOODS'
+export const CHANGEGOODSNUM = 'CHANGEGOODSNUM'
+export const CHECKGOODS = 'CHECKGOODS'
