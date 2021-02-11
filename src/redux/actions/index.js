@@ -1,6 +1,6 @@
 import axios from "axios";
 import "../../mock"
-import { ININ_DATA, CHANGEGOODSNUM, ADD_GOODS, UPDATE_GOODS, DELETE_GOODS, CHECKGOODS } from "../actionType";
+import { ININ_DATA, CHANGEGOODSNUM, ADD_GOODS, UPDATE_GOODS, DELETE_GOODS, CHECKGOODS, CHECKALLGOODS } from "../actionType";
 
 //更新数据
 export const InitData = (dispatch) => {
@@ -62,13 +62,11 @@ export function changeGoodNum (status, goodsId, index, e) {
   }
 }
 // 全选
-export function checkAllGoods () {
+export const checkAllBUtton = (ischeck) => (dispatch) => {
   // 阻止事件冒泡、浏览器默认行为
   let checkAllGoods = {
-    type: 'checkAllGoods',
-    data: this.props.checkAll
+    type: CHECKALLGOODS,
+    data: ischeck
   }
-  return dispatch => {
-    dispatch(checkAllGoods)
-  }
+  dispatch(checkAllGoods)
 }

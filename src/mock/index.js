@@ -5,6 +5,7 @@ Mock.mock('api/data', (req, res) => {
   for (let i = 0; i < 20; i++) {
     let listObject = {
       id: Random.id(),
+      check: false,
       title: Random.csentence(5, 10),//随机生成一段中文文本。
       isSelected: false,
       productPic: Mock.Random.image('100×100', '#894FC4', '#FFF', '产品'),

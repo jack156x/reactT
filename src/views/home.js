@@ -2,8 +2,7 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
-import { InitData, checkGoods, changeGoodNum } from '../redux/actions'
-import "../mock"
+import { InitData, checkGoods, changeGoodNum, checkAllBUtton } from '../redux/actions'
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -24,6 +23,16 @@ class Home extends React.Component {
       }
       submitList.push(obj)
     })
+  }
+  checkAlls () {
+    let checkISFAL = this.props.checkAll;
+    this.props.getcheckAll(checkISFAL)
+  }
+  test (msg) {
+    console.log(msg)
+  }
+  getcheck = (goodsId, index) => {
+    this.props.checkGoods(goodsId, index)
   }
   componentDidMount () {
     this.props.InitData()
@@ -55,7 +64,7 @@ class Home extends React.Component {
                         <tr key={index}>
                           <td>
                             <div className="form-group form-check">
-                              <input type="checkbox" className="form-check-input" />
+                              <input type="checkbox" className="form-check-input" onChange={() => this.getcheck(item.id, index)} checked={item.check} />
                             </div>
                           </td>
                           <td>{item.productName}</td>
@@ -89,7 +98,7 @@ class Home extends React.Component {
                     <Col sm={5} md={7}>
                       {this.props.checkAll}
                       <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" />
+                        <input type="checkbox" className="form-check-input" onChange={() => this.checkAlls()} checked={this.props.checkAll} />
                         <label className="form-check-label">全选</label>
                       </div>
                     </Col>
@@ -100,6 +109,7 @@ class Home extends React.Component {
                       <div className="btn btn-default">合计：<span>{this.props.price.toFixed(2)}</span></div>
                     </Col>
                     <Col sm={2} md={1}>
+                      {/* <button onClick={this.test.bind(this, '被电击额')}>按钮点击事件</button> */}
                       <Button variant="primary" size="lg" block onClick={() => this.submit()}>结算</Button>
                     </Col>
                   </Row>
@@ -117,7 +127,6 @@ const mapStateToProps = (state) => {
   let price = state.reducers.list.reduce((total, item) => total + (item.check ? parseFloat(item.price * item.number) : 0), 0)
   return {
     list: state.reducers.list,
-    goodsList: state.reducers.list,
     checkAll: state.reducers.list.filter(item => item.check).length === state.reducers.list.length, // 根据已选的商品和商品总数量进行对对，决定全选状态
     price: price
   }
@@ -132,6 +141,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeGoodNum (status, goodsId, index, e) {
       dispatch(changeGoodNum(status, goodsId, index, e))
+    },
+    getcheckAll (ischeck) {
+      dispatch(checkAllBUtton(ischeck))
     }
   }
 }

@@ -16,7 +16,7 @@ const Redurcer = (state = initStore, actions) => {
     case CHECKGOODS:
       let checkList = state.list
       checkList.map((item, index) => {
-        if (item.goodsId === actions.data) {
+        if (item.id === actions.data) {
           item.check = !item.check
           item.number === '0' ? item.number = '1' : ''
         }
@@ -45,11 +45,12 @@ const Redurcer = (state = initStore, actions) => {
       DELETEList.splice(deleteIndex, 1)
       return DELETEList
     default:
-      let list = state.list
-      list.map((item, index) => {
-        item.check = true
-      })
-      return Object.assign({}, state, { list: [...list] })
+      // let list = state.list;
+      // list.map((item, index) => {
+      //   item.check = true
+      // })
+      // return Object.assign({}, state, { list: [...list] })
+      return state
   }
 }
 export default Redurcer
